@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import 'rxjs/add/operator/filter';
 
 @Injectable()
@@ -9,9 +10,11 @@ export class LocationTracker {
   public watch: any;
   public lat: number = 0;
   public lng: number = 0;
+  public address: string;
 
   constructor(public zone: NgZone, 
   private geolocation: Geolocation,
+  private geocoder: NativeGeocoder,
   private backgroundGeolocation: BackgroundGeolocation) {
 
   }
@@ -36,6 +39,14 @@ export class LocationTracker {
       this.zone.run(() => {
         this.lat = location.latitude;
         this.lng = location.longitude;
+
+        this.geocoder.reverseGeocode(this.lat, this.lng)
+        .then((result: NativeGeocoderReverseResult) => {
+          this.address = "The address is " + result.houseNumber + " " + result.street + " in " + result.city + ", " + result.countryCode;
+          console.log("The address is " + result.street + " " + result.houseNumber + " in " + result.city + ", " + result.countryCode);
+        })
+        .catch((error: any) => console.log(error));
+        
       });
 
     }, (err) => {
@@ -43,6 +54,8 @@ export class LocationTracker {
       console.log(err);
 
     });
+
+    
 
     // Turn ON the background-geolocation system.
     this.backgroundGeolocation.start();
