@@ -7,25 +7,40 @@
 </ion-header>
 
 <ion-content padding>
-  <h4>{{locationTracker.address}}</h4>
-  <h4>Current Latitude: {{locationTracker.lat}}</h4>
-  <h4>Current Longitude: {{locationTracker.lng}}</h4>
+  <ion-row>
+    <ion-col>
+      <ion-icon name="book"></ion-icon>&nbsp;&nbsp;{{locationTracker.address}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-icon name="pin"></ion-icon>&nbsp;&nbsp;( {{locationTracker.lat}}, {{locationTracker.lng}} )
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-icon name="time"></ion-icon>&nbsp;&nbsp;{{ locationTracker.timestamp |  date:'dd/MM/yyyy @ h:mma' }}
+    </ion-col>
+  </ion-row>
   <ion-row>
     <ion-col width-50>
       <button ion-button block color="primary" (click)="start()">
-        <ion-icon name="locate"> </ion-icon>&nbsp;&nbsp;Start Locator
+        <ion-icon name="locate"> </ion-icon>&nbsp;&nbsp;Start
       </button>
     </ion-col>
     <ion-col width-50>
       <button ion-button block color="primary" (click)="stop()">
-        <ion-icon name="locate"> </ion-icon>&nbsp;&nbsp;Stop Locator
+        <ion-icon name="locate"> </ion-icon>&nbsp;&nbsp;Stop
       </button>
     </ion-col>
   </ion-row>
-
   <br>
   <br>
-  <button ion-button full color="secondary">
-    <ion-icon name="clock"></ion-icon>&nbsp;&nbsp;Check In/Out
-    </button>
+  <ion-row>
+    <ion-col width-50>
+      <button ion-button full large color="secondary">
+        <ion-icon name="clock"></ion-icon>&nbsp;&nbsp;Check In/Out
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-content>

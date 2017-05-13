@@ -11,6 +11,7 @@ export class LocationTracker {
   public lat: number = 0;
   public lng: number = 0;
   public address: string;
+  public timestamp: any;
 
   constructor(public zone: NgZone, 
   private geolocation: Geolocation,
@@ -44,9 +45,10 @@ export class LocationTracker {
         .then((result: NativeGeocoderReverseResult) => {
           this.address = "The address is " + result.houseNumber + " " + result.street + " in " + result.city + ", " + result.countryCode;
           console.log("The address is " + result.street + " " + result.houseNumber + " in " + result.city + ", " + result.countryCode);
+          this.timestamp = new Date();
         })
         .catch((error: any) => console.log(error));
-        
+
       });
 
     }, (err) => {
@@ -76,6 +78,7 @@ export class LocationTracker {
       this.zone.run(() => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
+        this.timestamp = new Date();
       });
 
     });
