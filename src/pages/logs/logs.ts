@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { Api } from "../../providers/api";
 import { DataApi } from "../../providers/data-api";
 
+import { Map } from '../map/map';
+
 @IonicPage()
 @Component({
   selector: 'page-logs',
@@ -57,5 +59,9 @@ export class Logs {
 
   changeLimit() {
     this.getHistory();
+  }
+
+  getDetails(lat, lng) {
+    this.navCtrl.push(Map, {lat:lat, lng:lng});
   }
 }
