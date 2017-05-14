@@ -91,9 +91,9 @@ export class SignUp {
       this.data = result;
       console.log(this.data);
       if (this.data.result == 0) {
-        showAlert('You have registered with the system. Proceed to Sign In');
+        this.showAlert('You have registered with the system. Proceed to Sign In');
       } else {
-        showAlert('Thank you for registering.');
+        this.showAlert('Thank you for registering.');
       }
       // Close login page after successful signup
       this._nav.pop();
