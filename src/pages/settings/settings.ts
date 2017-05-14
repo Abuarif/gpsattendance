@@ -69,11 +69,19 @@ export class Settings {
 
   login() {
     if (this.activate) {
-      this.navCtrl.push(Login, {serverPath: this.serverPath});
+      this.navCtrl.push(Login, {
+        serverPath: this.serverPath, 
+        email: this.email
+      });
     }
   }
 
   signup() {
-    this.navCtrl.push(SignUp, {serverPath: this.serverPath});
+    this.navCtrl.push(SignUp, {
+      serverPath: this.serverPath, 
+      name: this.name, 
+      email: this.email, 
+      token: this.token
+    });
   }
 }

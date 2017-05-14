@@ -41,6 +41,7 @@ export class Login {
   ionViewWillEnter() {
     console.log('ionViewWillEnter LoginPage');
     this.dataApi.update('serverPath', this.navParams.get("serverPath"));
+    this.dataApi.update('email', this.navParams.get("email"));
 
     if (!this.dataApi.get('debug')) {
       this.dataApi.clear('token');
