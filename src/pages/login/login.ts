@@ -52,7 +52,7 @@ export class Login {
   ionViewWillLeave() {
     console.log('ionViewWillLeave LoginPage');
     if (!this.data) {
-      this.showAlert();
+      this.showAlert('Cancelled Sign In.');
     } else {
       this.dataApi.update('token', this.data.key);
       this.dataApi.update('user_id', this.data.user_id);
@@ -103,10 +103,10 @@ export class Login {
     });
   }
 
-  showAlert() {
+  showAlert(message: string) {
     let confirm = this.alertCtrl.create({
       title: 'Alert!',
-      message: 'Cancelled Sign In.',
+      message: message,
       buttons: [
         {
           text: 'ok',

@@ -55,7 +55,7 @@ export class SignUp {
   ionViewWillLeave() {
     console.log('ionViewWillLeave LoginPage');
     if (!this.data) {
-      this.showAlert();
+      this.showAlert('Cancelled Sign Up.');
     } else {
       this.dataApi.update('token', this.data.key);
       this.dataApi.update('user_id', this.data.user_id);
@@ -90,6 +90,11 @@ export class SignUp {
       loading.dismiss();
       this.data = result;
       console.log(this.data);
+      if (this.data.result == 0) {
+        showAlert('You have registered with the system.');
+      } else {
+        showAlert('Thank you for registering.');
+      }
       // Close login page after successful signup
       this._nav.pop();
     }, (err) => {
@@ -99,10 +104,10 @@ export class SignUp {
     });
   }
 
-  showAlert() {
+  showAlert(message: string) {
     let confirm = this.alertCtrl.create({
       title: 'Alert!',
-      message: 'Cancelled Sign Up.',
+      message: message,
       buttons: [
         {
           text: 'ok',
