@@ -1,23 +1,40 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>My Submission History</ion-title>
+    <ion-title>My History</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label fixed>Show list</ion-label>
+        <ion-select (ionChange)="changeLimit()" [(ngModel)]="limit" name="limit">
+          <ion-option value="5">5</ion-option>
+          <ion-option value="10">10</ion-option>
+          <ion-option value="15">15</ion-option>
+          <ion-option value="20">20</ion-option>
+          <ion-option value="25">25</ion-option>
+          <ion-option value="30">30</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
   <ion-list>
-    <ion-item *ngFor="let log of logs">
-      <h2>Group</h2>
-      <p>{{ log.Group.name }} </p>
-      <h2>Event/Game</h2>
-      <p>{{ log.Attendance.name }}</p>
-      <h2>Start</h2>
-      <p>{{ log.Attendance.start_date }}</p>
-      <h2>End</h2>
-      <p>{{ log.Attendance.end_date }}</p>
+    <ion-item *ngFor="let service of logs">
+      {{ service.UserService.service_date | date:'EEEE, dd-MM-yyyy'}}
+      <ion-item *ngFor="let tag of service.UserTag">
+        <ion-icon name="sunny" color="secondary" *ngIf="tag.direction == 1" item-left></ion-icon>
+        <ion-icon name="moon" color="dark" *ngIf="tag.direction == 2" item-left></ion-icon>
+        <label *ngIf="tag.direction == 1">In</label>
+        <label *ngIf="tag.direction == 2">Out</label>
+        <p item-right>{{ tag.tag_date | date:'hh:mma'}}</p>
+      </ion-item>
     </ion-item>
   </ion-list>
+
 </ion-content>

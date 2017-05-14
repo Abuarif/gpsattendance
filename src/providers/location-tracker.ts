@@ -40,10 +40,16 @@ export class LocationTracker {
       this.zone.run(() => {
         this.lat = location.latitude;
         this.lng = location.longitude;
+        let houseNumber = '';
+        let city = '';
 
         this.geocoder.reverseGeocode(this.lat, this.lng)
         .then((result: NativeGeocoderReverseResult) => {
-          this.address = "The address is " + result.houseNumber + " " + result.street + " in " + result.city + ", " + result.countryCode;
+
+          if(result.houseNumber) houseNumber = result.houseNumber;
+          if (result.city) city = result.city;
+
+          this.address = "The address is " + houseNumber + " " + result.street + " in " + city + ", " + result.countryCode;
           console.log("The address is " + result.street + " " + result.houseNumber + " in " + result.city + ", " + result.countryCode);
           this.timestamp = new Date();
         })

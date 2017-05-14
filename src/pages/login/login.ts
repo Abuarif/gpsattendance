@@ -83,14 +83,13 @@ export class Login {
     console.log(JSON.stringify(this.newUser));
 
     //Sign in
-    this._api.signin(this.newUser.serverPath, this.newUser.email, this.newUser.password).then((result) => {
+    this._api.signin(this.newUser.email, this.newUser.password).then((result) => {
       loading.dismiss();
       this.data = result;
       console.log(this.data);
       // Save token and server path to localStorage
       this.dataApi.update('token', this.data.key);
       this.dataApi.update('user_id', this.data.user_id);
-      this.dataApi.update('serverPath', this.newUser.serverPath);
       // Close login page after successful signin
       this._nav.pop();
     }, (err) => {

@@ -12,6 +12,7 @@ import { DataApi } from "../../providers/data-api";
 export class Logs {
   public logs: any;
   public token: string;
+  public limit: number = 5;
   public user_id: string;
 
   constructor(
@@ -43,7 +44,7 @@ export class Logs {
     loading.present();
 
     //Submit Barcode
-    this.api.get_submission_history(this.token, this.user_id)
+    this.api.get_submission_history(this.limit)
       .then((result) => {
         loading.dismiss();
         this.logs = result;
@@ -52,5 +53,9 @@ export class Logs {
         // Display submit barcode error code
         alert(err);
       });
+  }
+
+  changeLimit() {
+    this.getHistory();
   }
 }

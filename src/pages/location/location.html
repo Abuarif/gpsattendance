@@ -19,7 +19,7 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-icon name="time"></ion-icon>&nbsp;&nbsp;{{ locationTracker.timestamp |  date:'dd/MM/yyyy @ h:mm:ss a' }}
+      <ion-icon name="time"></ion-icon>&nbsp;&nbsp;{{ locationTracker.timestamp | date:'dd/MM/yyyy @ h:mm:ss a' }}
     </ion-col>
   </ion-row>
   <ion-row>
@@ -34,12 +34,10 @@
       </button>
     </ion-col>
   </ion-row>
-  <br>
-  <br>
   <ion-row>
-    <ion-col width-50>
-      <button ion-button full large color="secondary">
-        <ion-icon name="clock"></ion-icon>&nbsp;&nbsp;Check In/Out
+    <ion-col>
+      <button ion-button full round color="secondary" (click)="submitCheckInData()">
+        <ion-icon name="clock"> Submit</ion-icon> 
       </button>
     </ion-col>
   </ion-row>

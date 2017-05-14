@@ -10,7 +10,9 @@ export class DataApi {
     token: '',
     location: '',
     user_id: '',
-    email:''
+    email:'',
+    isCheckedIn: false,
+    activate: false
   };
 
   constructor(public http: Http) {
@@ -52,6 +54,10 @@ export class DataApi {
       this.data.location = temp;
     } else if (key == 'debug') {
       this.data.location = temp;
+    } else if (key == 'isCheckedIn') {
+      this.data.isCheckedIn = (temp == "true");
+    } else if (key == 'activate') {
+      this.data.activate = (temp == "true");
     }
     return temp;
   }
