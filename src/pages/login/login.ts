@@ -52,7 +52,7 @@ export class Login {
   ionViewWillLeave() {
     console.log('ionViewWillLeave LoginPage');
     if (!this.data) {
-      this.showAlert('Cancelled Sign In.');
+      this.showAlert('Cancelled Sign In.'); 
     } else {
       this.dataApi.update('token', this.data.key);
       this.dataApi.update('user_id', this.data.user_id);
