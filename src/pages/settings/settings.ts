@@ -74,6 +74,6 @@ export class Settings {
   }
 
   signup() {
-    this.navCtrl.push(SignUp);
+    this.navCtrl.push(SignUp, {serverPath: this.serverPath});
   }
 }
