@@ -45,12 +45,7 @@ export class Location {
       .then((result) => {
         loading.dismiss();
         this.data = result;
-        // console.log(this.data);
-        // alert("Attendance Submitted");
-      // Save token and server path to localStorage
-        if (this.data == 1 ) {
-          this.submitted();
-        } 
+        this.submitted();
       }, (err) => {
         loading.dismiss();
         // Display submit barcode error code
@@ -73,6 +68,7 @@ export class Location {
           text: 'Agree',
           handler: () => {
             console.log('Agree clicked ');
+            this.stop();
             this.submitTags(0);
           }
         }
@@ -90,8 +86,7 @@ export class Location {
         {
           text: 'ok',
           handler: () => {
-            console.log('Disagree clicked');
-            this.stop();
+            console.log('ok clicked');
             this.navCtrl.setRoot(TabsPage);
           }
         },

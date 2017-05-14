@@ -63,7 +63,7 @@ export class Settings {
   }
 
   login() {
-    if (this.activate) {
+    if (!this.activate) {
       this.navCtrl.push(Login, {serverPath: this.serverPath});
     }
   }
