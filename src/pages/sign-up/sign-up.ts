@@ -97,11 +97,19 @@ export class SignUp {
   }
 
   showAlert() {
-    let alert = this.alertCtrl.create({
+    let confirm = this.alertCtrl.create({
       title: 'Alert!',
-      subTitle: 'Cancel Sign Up!',
-      buttons: ['OK']
+      message: 'Cancelled Sign Up.',
+      buttons: [
+        {
+          text: 'ok',
+          handler: () => {
+            console.log('ok clicked');
+          }
+        },
+        
+      ]
     });
-    alert.present();
+    confirm.present();
   }
 }

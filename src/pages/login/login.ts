@@ -103,12 +103,20 @@ export class Login {
   }
 
   showAlert() {
-    let alert = this.alertCtrl.create({
+    let confirm = this.alertCtrl.create({
       title: 'Alert!',
-      subTitle: 'Cancel Sign In!',
-      buttons: ['OK']
+      message: 'Cancelled Sign In.',
+      buttons: [
+        {
+          text: 'ok',
+          handler: () => {
+            console.log('ok clicked');
+          }
+        },
+        
+      ]
     });
-    alert.present();
+    confirm.present();
   }
 
 }
