@@ -7,14 +7,16 @@ import { DataApi } from "../../providers/data-api";
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-sign-up',
+  templateUrl: 'sign-up.html',
 })
-export class Login {
+export class SignUp {
 
   public newUser = {
     serverPath: '',
     email: '',
+    name: '',
+    staffNumber: '',
     password: ''
   };
 
@@ -34,7 +36,6 @@ export class Login {
       name: new FormControl(this.dataApi.get('name'), [Validators.required, Validators.email]),
       staffNumber: new FormControl(this.dataApi.get('token'), [Validators.required, Validators.email]),
       email: new FormControl(this.dataApi.get('email'), [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
   }
 
@@ -58,16 +59,11 @@ export class Login {
     }
   }
 
-  public login() {
+  public signup() {
 
     // Validation
     if (!this.loginFormControl.controls.email.valid) {
       alert("Invalid username! Use full email address as username.");
-      return;
-    }
-
-    if (!this.loginFormControl.controls.password.valid) {
-      alert("Invalid password! Minimum 8 characters.");
       return;
     }
 
@@ -81,19 +77,17 @@ export class Login {
     //Take the values from  the form control
     this.newUser.serverPath = this.dataApi.get('serverPath');
     this.newUser.email = this.loginFormControl.get("email").value.trim();
-    this.newUser.password = this.loginFormControl.get("password").value;
+    this.newUser.name = this.loginFormControl.get("name").value;
+    this.newUser.staffNumber = this.loginFormControl.get("staffNumber").value;
 
     console.log(JSON.stringify(this.newUser));
 
     //Sign in
-    this._api.signin(this.newUser.email, this.newUser.password).then((result) => {
+    this._api.signup(this.newUser.name, this.newUser.staffNumber, this.newUser.email).then((result) => {
       loading.dismiss();
       this.data = result;
       console.log(this.data);
-      // Save token and server path to localStorage
-      this.dataApi.update('token', this.data.key);
-      this.dataApi.update('user_id', this.data.user_id);
-      // Close login page after successful signin
+      // Close login page after successful signup
       this._nav.pop();
     }, (err) => {
       loading.dismiss();
@@ -105,10 +99,9 @@ export class Login {
   showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Alert!',
-      subTitle: 'Cancel Sign In!',
+      subTitle: 'Cancel Sign Up!',
       buttons: ['OK']
     });
     alert.present();
   }
-
 }

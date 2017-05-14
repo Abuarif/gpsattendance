@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Nav, IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { Login } from '../login/login';
+import { SignUp } from '../sign-up/sign-up';
 import { HomePage } from '../home/home';
 import { DataApi } from '../../providers/data-api';
 
@@ -15,6 +16,7 @@ export class Settings {
   private token: string = ''; 
   private email: string = 'suhaimi.maidin@prasarana.com.my';
   private user_id: string = '';
+  private name: string = '';
   private debug: boolean = false;
   private activate: boolean = false;
 
@@ -27,10 +29,13 @@ export class Settings {
     this.dataApi.update('token', this.token);
     this.dataApi.update('debug', this.debug);
     this.dataApi.update('activate', this.activate);
+    this.dataApi.update('name', this.name);
   }
 
   public debugDefault() {
     if (this.debug) {
+      this.name = 'Suhaimi Maidin';
+      this.dataApi.update('name', this.name);
       this.token = '10010060';
       this.dataApi.update('token', this.token);
       this.dataApi.update('email', this.email);
@@ -63,8 +68,12 @@ export class Settings {
   }
 
   login() {
-    if (!this.activate) {
+    if (this.activate) {
       this.navCtrl.push(Login, {serverPath: this.serverPath});
     }
+  }
+
+  signup() {
+    this.navCtrl.push(SignUp);
   }
 }

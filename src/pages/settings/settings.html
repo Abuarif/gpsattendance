@@ -7,8 +7,8 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label>Test Mode</ion-label>
-      <ion-toggle color="secondary" [(ngModel)]="debug" [checked]="debug" (ionChange)="debugDefault()"></ion-toggle>
+      <ion-label>Full Name</ion-label>
+      <ion-input type="text" [(ngModel)]="name" placeholder="Full name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Email Address</ion-label>
@@ -31,8 +31,17 @@
       <ion-label>Activate Connection</ion-label>
       <ion-toggle color="secondary" [(ngModel)]="activate" [checked]="activate" (ionChange)="login($event)"></ion-toggle>
     </ion-item>
+    <ion-item>
+      <ion-label>Test Mode</ion-label>
+      <ion-toggle color="secondary" [(ngModel)]="debug" [checked]="debug" (ionChange)="debugDefault()"></ion-toggle>
+    </ion-item>
 
   </ion-list>
+  <ion-row>
+    <button ion-button full round color="primary" (click)="signup()">
+      <ion-icon name="book"></ion-icon>&nbsp;&nbsp;Sign Up
+    </button>
+  </ion-row>
   <ion-list  *ngIf="debug">
     <ion-list-header>
       Configuration List
@@ -42,6 +51,10 @@
       <p> {{ serverPath }}</p>
     </ion-item>
     <ion-item>
+      <h2>Full Name</h2>
+      <p> {{ name }} </p>
+    </ion-item>
+    <ion-item>
       <h2>Email Address</h2>
       <p> {{ email }} </p>
     </ion-item>
@@ -49,9 +62,9 @@
       <h2>Staff Number</h2>
       <p> {{ token }} </p>
     </ion-item>
-    <ion-item>
+    <!--<ion-item>
       <h2>User Id</h2>
       <p> {{ user_id }} </p>
-    </ion-item>
+    </ion-item>-->
   </ion-list>
 </ion-content>

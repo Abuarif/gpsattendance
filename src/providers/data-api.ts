@@ -11,6 +11,7 @@ export class DataApi {
     location: '',
     user_id: '',
     email:'',
+    name:'',
     isCheckedIn: false,
     activate: false
   };
@@ -54,6 +55,8 @@ export class DataApi {
       this.data.location = temp;
     } else if (key == 'debug') {
       this.data.location = temp;
+    } else if (key == 'name') {
+      this.data.name = temp;
     } else if (key == 'isCheckedIn') {
       this.data.isCheckedIn = (temp == "true");
     } else if (key == 'activate') {

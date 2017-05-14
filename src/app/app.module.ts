@@ -10,8 +10,10 @@ import { Logs } from '../pages/logs/logs';
 import { Settings } from '../pages/settings/settings';
 import { Announcement } from '../pages/announcement/announcement';
 import { AnnouncementDetail } from '../pages/announcement-detail/announcement-detail';
+import { SignUp } from '../pages/sign-up/sign-up';
 
 import { TabsPage } from '../pages/tabs/tabs';
+
 import { Api } from '../providers/api';
 import { DataApi } from '../providers/data-api';
 import { LocationTracker } from '../providers/location-tracker';
@@ -29,6 +31,7 @@ import { HttpModule } from '@angular/http';
     MyApp,
     HomePage,
     Login,
+    SignUp,
     Location,
     Logs,
     Settings,
@@ -46,6 +49,7 @@ import { HttpModule } from '@angular/http';
     MyApp,
     Location,
     Login,
+    SignUp,
     Logs,
     Settings,
     HomePage,

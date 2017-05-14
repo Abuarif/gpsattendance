@@ -22,12 +22,12 @@ export class Api {
     });
   }
 
-  public signup(username, password) {
+  public signup(name, staffNumber, email) { 
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.get(localStorage.getItem('serverPath')+'/api/signin.json?username=' + username + '&password=' + password, {headers: headers})
+      this.http.get(localStorage.getItem('serverPath')+'/api/signup.json?name=' + name + '&staff_number=' + staffNumber + '&email=' + email, {headers: headers})
         .subscribe(res => {
           resolve(res.json());
         }, (err) => {
