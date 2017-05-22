@@ -34,7 +34,7 @@ export class Login {
       name: new FormControl(this.dataApi.get('name'), [Validators.required, Validators.email]),
       staffNumber: new FormControl(this.dataApi.get('token'), [Validators.required, Validators.email]),
       email: new FormControl(this.dataApi.get('email'), [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 
