@@ -14,7 +14,7 @@ import { DataApi } from '../../providers/data-api';
 export class Settings {
   private serverPath: string = 'https://mtas.prasarana.com.my';
   private token: string = ''; 
-  private email: string = 'suhaimi.maidin@prasarana.com.my';
+  private email: string = '';
   private user_id: string = '';
   private name: string = '';
   private debug: boolean = false;
