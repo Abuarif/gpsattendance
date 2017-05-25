@@ -3,7 +3,7 @@ import { Nav, IonicPage, NavController, NavParams, AlertController } from 'ionic
 
 import { Login } from '../login/login';
 import { SignUp } from '../sign-up/sign-up';
-import { HomePage } from '../home/home';
+// import { HomePage } from '../home/home';
 import { DataApi } from '../../providers/data-api';
 
 @IonicPage()
@@ -13,7 +13,7 @@ import { DataApi } from '../../providers/data-api';
 })
 export class Settings {
   private serverPath: string = 'https://mtas.prasarana.com.my';
-  private token: string = ''; 
+  private token: string = '';
   private email: string = '';
   private user_id: string = '';
   private name: string = '';
@@ -51,6 +51,7 @@ export class Settings {
     this.user_id = this.dataApi.get('user_id');
     this.token = this.dataApi.get('token');
     this.activate = (this.dataApi.get('activate') == 'true');
+    this.name = this.dataApi.get('name');
   }
 
   showAlert() {
@@ -64,23 +65,30 @@ export class Settings {
 
   logout() {
     this.dataApi.flush();
-    this.nav.popToRoot(HomePage);
   }
 
   login() {
-    if (this.activate) {
-      this.navCtrl.push(Login, {
-        serverPath: this.serverPath, 
-        email: this.email
-      });
+    if (this.activate && (!this.dataApi.get('token'))) {
+      console.log('activate');
+      this.push();
+    } else if (!this.activate) {
+      console.log('reactivate');
+      this.dataApi.flush();
+      this.push();
     }
+  }
+
+  push() {
+    this.navCtrl.push(Login, {
+      serverPath: this.serverPath
+    });
   }
 
   signup() {
     this.navCtrl.push(SignUp, {
-      serverPath: this.serverPath, 
-      name: this.name, 
-      email: this.email, 
+      serverPath: this.serverPath,
+      name: this.name,
+      email: this.email,
       token: this.token
     });
   }

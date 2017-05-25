@@ -5,6 +5,7 @@ import { Api } from "../../providers/api";
 import { DataApi } from "../../providers/data-api";
 
 import { Map } from '../map/map';
+import { Login } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -35,6 +36,8 @@ export class Logs {
     this.token = this.dataApi.get('token');
     this.user_id = this.dataApi.get('user_id');
     this.getHistory();
+
+    this.login();
   }
 
   private getHistory() {
@@ -63,5 +66,13 @@ export class Logs {
 
   getDetails(lat, lng) {
     this.navCtrl.push(Map, {lat:lat, lng:lng});
+  }
+
+  login() {
+    if (!this.dataApi.get('token')) {
+      this.navCtrl.push(Login, {
+        serverPath: this.dataApi.get('serverPath')
+      });
+    }
   }
 }

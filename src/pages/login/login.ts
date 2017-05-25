@@ -11,6 +11,7 @@ import { DataApi } from "../../providers/data-api";
   templateUrl: 'login.html',
 })
 export class Login {
+  private serverPath: string = 'https://mtas.prasarana.com.my';
 
   public newUser = {
     serverPath: '',
@@ -40,8 +41,7 @@ export class Login {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter LoginPage');
-    this.dataApi.update('serverPath', this.navParams.get("serverPath"));
-    this.dataApi.update('email', this.navParams.get("email"));
+    this.dataApi.update('serverPath', this.serverPath);
 
     if (!this.dataApi.get('debug')) {
       this.dataApi.clear('token');
@@ -92,8 +92,10 @@ export class Login {
       this.data = result;
       console.log(this.data);
       // Save token and server path to localStorage
+      this.dataApi.update('name', this.data.name);
       this.dataApi.update('token', this.data.key);
       this.dataApi.update('user_id', this.data.user_id);
+      this.dataApi.update('activate', this.data.isActivated);
       // Close login page after successful signin
       this._nav.pop();
     }, (err) => {

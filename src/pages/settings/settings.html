@@ -7,18 +7,6 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label>Full Name</ion-label>
-      <ion-input type="text" [(ngModel)]="name" placeholder="Full name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Email Address</ion-label>
-      <ion-input type="email" [(ngModel)]="email" placeholder="Email Address"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Staff Number</ion-label>
-      <ion-input type="number" [(ngModel)]="token" placeholder="Staff Number"></ion-input>
-    </ion-item> 
-    <ion-item>
       <ion-label>Connection</ion-label>
       <ion-select [(ngModel)]="serverPath">
         <ion-option *ngIf="debug" value="http://192.168.0.101/ict">BPK</ion-option>
@@ -31,10 +19,10 @@
       <ion-label>Activate Connection</ion-label>
       <ion-toggle color="secondary" [(ngModel)]="activate" [checked]="activate" (ionChange)="login($event)"></ion-toggle>
     </ion-item>
-    <ion-item>
+    <!--<ion-item>
       <ion-label>Test Mode</ion-label>
       <ion-toggle color="secondary" [(ngModel)]="debug" [checked]="debug" (ionChange)="debugDefault()"></ion-toggle>
-    </ion-item>
+    </ion-item>-->
 
   </ion-list>
   <ion-row>

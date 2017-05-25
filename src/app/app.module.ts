@@ -21,6 +21,7 @@ import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { DatePipe } from '@angular/common';
+import { CheckDevice } from '../providers/check-device';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -67,7 +68,8 @@ import { HttpModule } from '@angular/http';
     Api,
     DataApi,
     DatePipe,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    CheckDevice,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

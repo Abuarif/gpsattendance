@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.ionic2gpsattendance815840" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>mTAS 1.1</name>
+<widget id="com.prasarana.atttendance" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>mTAS</name>
   <description>An attendance tracker which track your current Lat and Long.</description>
   <author email="suhaimi.albakri@gmail.com" href="">SDU Team</author>
   <content src="index.html"/>

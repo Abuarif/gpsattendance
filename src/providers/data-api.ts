@@ -7,7 +7,7 @@ export class DataApi {
   public data = {
     debug: '',
     serverPath: '',
-    token: '',
+    token: '0',
     location: '',
     user_id: '',
     email:'',
