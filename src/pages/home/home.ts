@@ -15,11 +15,6 @@ export class HomePage {
   slides = [
     {
       title: "Welcome to Mobile Time Attendance System",
-      description: "The <b>mobile Time Attendance System (mTAS)</b> facilitates administrators to keep track our personnels according to our HCD policies.",
-      image: "assets/image/prasarana.png",
-    },
-    {
-      title: "Personal Profile",
       description: 
       "Name: " + this.dataApi.get('name') + "<br>" + 
       "Staff Number: " + this.dataApi.get('token'),
