@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import  { DataApi } from '../../providers/data-api';
+import { DataApi } from '../../providers/data-api';
 
 
 @IonicPage()
@@ -12,6 +12,7 @@ import  { DataApi } from '../../providers/data-api';
 export class Map {
   lat: any;
   lng: any;
+  public nativeDevice: boolean;
 
   constructor(
     public navCtrl: NavController, 
@@ -34,4 +35,5 @@ export class Map {
       this.dataApi.clear('user_id');
     }
   }
+
 }

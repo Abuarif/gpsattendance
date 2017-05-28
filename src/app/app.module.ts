@@ -22,6 +22,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { DatePipe } from '@angular/common';
 import { CheckDevice } from '../providers/check-device';
+import { ConnectivityService } from '../providers/connectivity-service';
+import { Network } from '@ionic-native/network';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -69,6 +71,8 @@ import { HttpModule } from '@angular/http';
     DataApi,
     DatePipe,
     CheckDevice,
+    Network,
+    ConnectivityService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
