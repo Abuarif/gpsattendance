@@ -47,11 +47,10 @@ export class Location {
   }
 
   ionViewWillEnter() {
+    this.active = this.dataApi.get('activate');
     if (this.active) {
       if (!this.nativeDevice) {
-        this.active = this.dataApi.get('activate');
         console.log('active: ' + this.active);
-        // this.loadMap();
         this.loadGoogleMaps();
       }
       this.getHistory();
