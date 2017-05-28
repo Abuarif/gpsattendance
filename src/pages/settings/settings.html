@@ -5,62 +5,38 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label>Connection</ion-label>
-      <ion-select [(ngModel)]="serverPath">
-        <ion-option *ngIf="debug" value="http://192.168.0.101/ict">BPK</ion-option>
-        <ion-option *ngIf="debug" value="http://192.168.2.1/ict">Macbook Wifi</ion-option>
-        <ion-option *ngIf="debug" value="http://10.128.48.36/ict">Development</ion-option>
-        <ion-option value="https://mtas.prasarana.com.my">Live Server</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Activate Connection</ion-label>
-      <ion-toggle color="secondary" [(ngModel)]="activate" [checked]="activate" (ionChange)="login($event)"></ion-toggle>
-    </ion-item>
-    <!--<ion-item>
-      <ion-label>Test Mode</ion-label>
-      <ion-toggle color="secondary" [(ngModel)]="debug" [checked]="debug" (ionChange)="debugDefault()"></ion-toggle>
-    </ion-item>-->
+  <ion-row>
+    <ion-col col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 col-xl-3 offset-xl-3>
+      <ion-list>
+        <ion-item>
+          <ion-label>Connection</ion-label>
+          <ion-select [(ngModel)]="serverPath">
+            <ion-option *ngIf="debug" value="http://192.168.0.101/ict">BPK</ion-option>
+            <ion-option *ngIf="debug" value="http://192.168.2.1/ict">Macbook Wifi</ion-option>
+            <ion-option *ngIf="debug" value="http://10.128.48.36/ict">Development</ion-option>
+            <ion-option value="https://mtas.prasarana.com.my">Live Server</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Activate Connection</ion-label>
+          <ion-toggle color="secondary" [(ngModel)]="activate" [checked]="activate" (ionChange)="login($event)"></ion-toggle>
+        </ion-item>
 
-  </ion-list>
-  <ion-row *ngIf="!activate">
-    <button ion-button full round color="secondary" (click)="login()" width-50>
+      </ion-list>
+      <ion-row *ngIf="!activate">
+        <button ion-button full round color="secondary" (click)="login()" width-50>
       <ion-icon name="log-in"></ion-icon>&nbsp;&nbsp;Log In
     </button>
-    <button ion-button full round color="primary" (click)="signup()" width-50>
+        <button ion-button full round color="primary" (click)="signup()" width-50>
       <ion-icon name="book"></ion-icon>&nbsp;&nbsp;Sign Up
     </button>
-  </ion-row>
-  <ion-row *ngIf="activate">
-    <button ion-button full round color="danger" (click)="logout()" width-50>
+      </ion-row>
+      <ion-row *ngIf="activate">
+        <button ion-button full round color="danger" (click)="logout()" width-50>
       <ion-icon name="log-out"></ion-icon>&nbsp;&nbsp;Log Out
     </button>
+      </ion-row>
+    </ion-col>
   </ion-row>
-  <ion-list  *ngIf="debug">
-    <ion-list-header>
-      Configuration List
-    </ion-list-header>
-    <ion-item>
-      <h2>Connection</h2>
-      <p> {{ serverPath }}</p>
-    </ion-item>
-    <ion-item>
-      <h2>Full Name</h2>
-      <p> {{ name }} </p>
-    </ion-item>
-    <ion-item>
-      <h2>Email Address</h2>
-      <p> {{ email }} </p>
-    </ion-item>
-    <ion-item>
-      <h2>Staff Number</h2>
-      <p> {{ token }} </p>
-    </ion-item>
-    <!--<ion-item>
-      <h2>User Id</h2>
-      <p> {{ user_id }} </p>
-    </ion-item>-->
-  </ion-list>
+
 </ion-content>
