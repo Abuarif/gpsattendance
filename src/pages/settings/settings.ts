@@ -65,6 +65,11 @@ export class Settings {
 
   logout() {
     this.dataApi.flush();
+    this.activate = false;
+    this.token = '';
+    this.user_id = '';
+    this.name = '';
+    
   }
 
   login() {

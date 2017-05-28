@@ -25,9 +25,17 @@
     </ion-item>-->
 
   </ion-list>
-  <ion-row>
-    <button ion-button full round color="primary" (click)="signup()">
+  <ion-row *ngIf="!activate">
+    <button ion-button full round color="secondary" (click)="login()" width-50>
+      <ion-icon name="log-in"></ion-icon>&nbsp;&nbsp;Log In
+    </button>
+    <button ion-button full round color="primary" (click)="signup()" width-50>
       <ion-icon name="book"></ion-icon>&nbsp;&nbsp;Sign Up
+    </button>
+  </ion-row>
+  <ion-row *ngIf="activate">
+    <button ion-button full round color="danger" (click)="logout()" width-50>
+      <ion-icon name="log-out"></ion-icon>&nbsp;&nbsp;Log Out
     </button>
   </ion-row>
   <ion-list  *ngIf="debug">
