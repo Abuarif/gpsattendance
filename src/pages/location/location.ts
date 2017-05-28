@@ -7,6 +7,7 @@ import { CheckDevice } from '../../providers/check-device';
 import { ConnectivityService } from '../../providers/connectivity-service';
 import { Geolocation } from '@ionic-native/geolocation';
 
+import { Settings } from '../settings/settings';
 import { TabsPage } from '../tabs/tabs';
 
 declare var google;
@@ -45,18 +46,20 @@ export class Location {
     this.nativeDevice = this.checkDevice.nativeDevice;
   }
 
-  ionViewDidLoad() {
-    if (!this.nativeDevice) {
-      this.active = this.dataApi.get('activate');
-      console.log('active: ' + this.active);
-      // this.loadMap();
-      this.loadGoogleMaps();
-    }
-  }
-
   ionViewWillEnter() {
-    this.getHistory();
-    this.isCheckedIn = (this.dataApi.get('isCheckedIn') == 'true');
+    if (this.active) {
+      if (!this.nativeDevice) {
+        this.active = this.dataApi.get('activate');
+        console.log('active: ' + this.active);
+        // this.loadMap();
+        this.loadGoogleMaps();
+      }
+      this.getHistory();
+      this.isCheckedIn = (this.dataApi.get('isCheckedIn') == 'true');
+    } else {
+      this.navCtrl.push(Settings);
+    }
+
   }
   start() {
     this.locationTracker.startTracking();
@@ -453,12 +456,14 @@ export class Location {
         loading.dismiss();
         this.data = result;
         console.log(this.data);
-        if (this.data.UserTag.direction == '1') {
-          // change to checkout
-          this.isCheckedIn = true;
-        } else if (this.data.UserTag.direction == '2') {
-          // change to checkin
-          this.isCheckedIn = false;
+        if (this.data.UserTag) {
+          if (this.data.UserTag.direction == '1') {
+            // change to checkout
+            this.isCheckedIn = true;
+          } else if (this.data.UserTag.direction == '2') {
+            // change to checkin
+            this.isCheckedIn = false;
+          }
         }
         this.dataApi.update('isCheckedIn', this.isCheckedIn);
       }, (err) => {

@@ -4,6 +4,7 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Api } from "../../providers/api";
 import { DataApi } from "../../providers/data-api";
 
+import { Settings } from '../settings/settings';
 
 @IonicPage()
 @Component({
@@ -56,6 +57,8 @@ export class Login {
     } else {
       this.dataApi.update('token', this.data.key);
       this.dataApi.update('user_id', this.data.user_id);
+      this.dataApi.update('activate', this.data.isActivated);
+      this._nav.popTo(Settings);
     }
   }
 

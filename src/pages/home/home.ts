@@ -11,23 +11,31 @@ import { Settings } from '../settings/settings';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  slides = [
-    {
-      title: "Welcome to Mobile Time Attendance System",
-      description: 
-      "Name: " + this.dataApi.get('name') + "<br>" + 
-      "Staff Number: " + this.dataApi.get('token'),
-      image: "assets/image/prasarana.png",
-    }
-  ];
+  slides: any;
 
   constructor(public navCtrl: NavController, public dataApi: DataApi, public checkDevice: CheckDevice) {
     this.checkAuth();
   }
 
   ionViewOnLoad() {
-    this.checkAuth();
+    
+  }
+
+  ionViewWillEnter() {
+
+    if (this.dataApi.get('activate')) {
+      this.slides = [
+        {
+          title: "Welcome to Mobile Time Attendance System",
+          description:
+          "Name: " + this.dataApi.get('name') + "<br>" +
+          "Staff Number: " + this.dataApi.get('token'),
+          image: "assets/image/prasarana.png",
+        }
+      ];
+    } else {
+      this.checkAuth();
+    }
   }
 
   getNews() {

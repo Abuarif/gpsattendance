@@ -5,7 +5,7 @@ import { Api } from "../../providers/api";
 import { DataApi } from "../../providers/data-api";
 
 import { Map } from '../map/map';
-import { Login } from '../login/login';
+import { Settings } from '../settings/settings';
 
 @IonicPage()
 @Component({
@@ -70,9 +70,7 @@ export class Logs {
 
   login() {
     if (!this.dataApi.get('token')) {
-      this.navCtrl.push(Login, {
-        serverPath: this.dataApi.get('serverPath')
-      });
+      this.navCtrl.push(Settings);
     }
   }
 }
