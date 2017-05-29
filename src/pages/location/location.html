@@ -7,27 +7,26 @@
 </ion-header>
 
 <ion-content padding>
-
-  <div #map id="map" *ngIf="!nativeDevice">
-
-  </div>
-  <ion-grid *ngIf="!nativeDevice">
-    <ion-row>
-      <ion-col width-50>
-        <button ion-button full round color="light" (click)="initMap()">
+  <div #map id="map" *ngIf="!nativeDevice"> </div>
+  <div *ngIf="!nativeDevice">
+    <ion-grid>
+      <ion-row>
+        <ion-col width-50>
+          <button ion-button full round color="light" (click)="initMap()">
           <ion-icon name="locate"> Locate</ion-icon>
         </button>
-      </ion-col>
-      <ion-col width-50>
-        <button ion-button full round color="secondary" [disabled]="!active" *ngIf="canCheckIn()" (click)="submitNonNativeData()">
+        </ion-col>
+        <ion-col width-50>
+          <button ion-button full round color="secondary" [disabled]="!active" *ngIf="canCheckIn()" (click)="submitNonNativeData()">
           <ion-icon name="clock"> Check In</ion-icon> 
         </button>
-        <button ion-button full round color="danger" *ngIf="canCheckOut()" (click)="submitNonNativeData()">
+          <button ion-button full round color="danger" *ngIf="canCheckOut()" (click)="submitNonNativeData()">
           <ion-icon name="clock"> Check Out</ion-icon>
         </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
   <div *ngIf="nativeDevice">
     <ion-row>
       <ion-col>
@@ -51,9 +50,12 @@
       </button>
       </ion-col>
       <ion-col width-50>
-        <button ion-button full round color="secondary" (click)="submitNativeData()">
-        <ion-icon name="clock"> Submit</ion-icon> 
-      </button>
+        <button ion-button full round color="secondary" [disabled]="!active" *ngIf="canCheckIn()" (click)="submitNativeData()">
+          <ion-icon name="clock"> Check In</ion-icon> 
+        </button>
+        <button ion-button full round color="danger" *ngIf="canCheckOut()" (click)="submitNativeData()">
+          <ion-icon name="clock"> Check Out</ion-icon>
+        </button>
       </ion-col>
     </ion-row>
   </div>

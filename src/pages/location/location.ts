@@ -48,9 +48,11 @@ export class Location {
 
   ionViewWillEnter() {
     this.active = this.dataApi.get('activate');
+    console.log('active: ' + this.active);
     if (this.active) {
-      if (!this.nativeDevice) {
-        console.log('active: ' + this.active);
+      if (this.nativeDevice) {
+        this.start();
+      } else {
         this.loadGoogleMaps();
       }
       this.getHistory();
